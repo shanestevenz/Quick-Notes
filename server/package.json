@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3"
+  },
+  "homepage": "https://github.com/SiddharthaPradhan/final_project#readme",
+  "bugs": {
+    "url": "https://github.com/SiddharthaPradhan/final_project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiddharthaPradhan/final_project.git"
+  }
+}
