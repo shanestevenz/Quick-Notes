@@ -8,3 +8,7 @@ We will be using node.js along with express to create our server. MongoDB along 
 
 ## Frontend
 For the Front end we will use React, along with tailwind css framework for styling. 
+
+
+## Figma
+https://www.figma.com/file/4meIo0FXGJP5pfQicm51Ul/Untitled?node-id=0%3A1
