@@ -2,6 +2,7 @@ const path = require('path')
 const mongodb = require('mongodb')
 //require('dotenv').config()
 const passport = require('passport')
+const cors = require('cors')
 const GitHubStrategy = require('passport-github2')
 const session = require('express-session');
 const express = require('express'),
@@ -16,7 +17,7 @@ const ObjectId = require('mongodb').ObjectId
 const RES_OK = 200, RES_BAD_REQUEST = 400, RES_USER_EXISTS = 402, RES_TASK_ERR = 410
 
 //npx tailwindcss -i ./public/css/tailwindStyle.css -o ./public/css/output.css --watch
-
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
@@ -39,7 +40,7 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.use(new GitHubStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://a3-siddhartha-pradhan.glitch.me/auth/github/callback"
+  callbackURL: "http://localhost:3000/auth/github/callback"
 },
   function (accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
@@ -77,52 +78,28 @@ app.get('/auth/github',
   passport.authenticate('github', { scope: ['user:email'] }),
   function (req, res) { });
 
-
-
-
-
-
+//, { failureRedirect: '/login', failureMessage:true}
 // handle login attempt
-app.post('/login', passport.authenticate('local', { failureRedirect: '/login', failureMessage:true}), function (req, res) {
-  console.log("AUTHENTICATION: Local account")
-  res.redirect('/index');
+app.post('/login',  function (req, res, next) {
+  passport.authenticate('local', function(err, user, info){
+  
+  if (user){ // user exists
+      res.status(200).send({isG: "All G"})
+  } else {
+    res.status(401).send({isG: "Not G"})
+  }
+  })(req, res, next)
+
+  //res.redirect('/index');
 });
-// handle login attempt
-// app.post('/login', function (req, res, next) {
-//   passport.authenticate('local', function(err, user, info) {
-//     console.log(err,user,info)
-//     if (err){
-//       return next(err)
-//     }
-//     if (!user){
-//       return res.status(401).send({ success : false, message : "Authentication unsuccessful" })
-
-//     } else {
-//       req.logIn(user,function(err){
-//         if (err){
-//           console.log(err)
-//         } else {
-//           return res.redirect('/index');
-
-//         }
-//       })
-//     }
-//   })
-// })
-    
-//     //console.log("AUTHENTICATION: Local account")
-//     //res.redirect('/index');
-//   })(req, res, next);
-
-// });
-
 
 // local mongoose db
 app.get("/", function (req, res) {
   if (req.isAuthenticated()) {
     res.sendFile(__dirname + '/public/index.html')
   } else {
-    res.sendFile(__dirname + '/public/login.html');
+    console.log("IN here")
+    // res.sendFile(__dirname + '/public/login.html');
   }
 
 });
@@ -133,7 +110,8 @@ app.get('/index', connectEnsureLogin.ensureLoggedIn(), (req, res) => {
 
 
 app.get("/login", function (req, res) {
-  res.sendFile(__dirname + "/public/login.html")
+  console.log("get /login")
+  //res.sendFile(__dirname + "/public/login.html")
 });
 
 
@@ -151,6 +129,26 @@ app.get("/username",connectEnsureLogin.ensureLoggedIn(), function (req, res) {
 
 
 
+app.get('/user/register',function (req, res) {
+  res.sendFile(__dirname + "/public/register.html")
+})
+
+
+app.post('/user/register', function (req, res) {
+  var username = req.body.username
+  var password = req.body.password
+  User.findByUsername(username).exec().then(user => {
+    if (user == null){
+      User.register({username:username},password)
+      res.redirect('/login')
+    } else {
+      res.writeHead(RES_USER_EXISTS, "Username already exists", { 'Content-Type': 'text/plain' })
+      res.end()
+    }
+  })
+  
+
+})
 
 
 
@@ -261,26 +259,6 @@ app.post('/tasks/edit', connectEnsureLogin.ensureLoggedIn(), bodyParser.json({ e
 })
 
 
-app.get('/user/register',function (req, res) {
-  res.sendFile(__dirname + "/public/register.html")
-})
-
-
-app.post('/user/register', function (req, res) {
-  var username = req.body.username
-  var password = req.body.password
-  User.findByUsername(username).exec().then(user => {
-    if (user == null){
-      User.register({username:username},password)
-      res.redirect('/login')
-    } else {
-      res.writeHead(RES_USER_EXISTS, "Username already exists", { 'Content-Type': 'text/plain' })
-      res.end()
-    }
-  })
-  
-
-})
 
 
 // serve rest of the files, has to be in the bottomish
