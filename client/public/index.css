@@ -2,3 +2,53 @@
 body {
   font-family: sans-serif;
 }
+
+
+
+
+
+.note {
+  position: relative;
+	border-radius: 10px;
+	padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+	min-height: 170px;
+  min-width: 170px;
+  
+	display: flex;
+	flex-direction: column;
+ 
+	white-space: pre-wrap;
+}
+
+.note-header{
+  display: flex;
+  justify-content: center;
+}
+.note-line {
+ 
+   width: 100%;
+   background-color: black;
+   height: 1px;
+   border: 0 none;
+  
+ 
+
+}
+
+.board {
+ 
+	display: grid;
+	grid-gap: 1rem; 
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(250px, 1fr)
+	);
+}
+.delete-btn {
+  position:absolute;
+ 
+  right: 10px;
+  
+}
