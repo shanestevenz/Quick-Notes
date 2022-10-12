@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types'
+import { Link } from "react-router-dom";
 
 async function loginUser(credentials) {
   const bodyVal = new URLSearchParams()
@@ -13,6 +14,11 @@ async function loginUser(credentials) {
   return res
  }
 
+//  const navigateToRegister = () => {
+//   // 👇️ navigate to /contacts
+//   navigate('/register');
+// };
+
 export default function Login( ) { //add some kind of token
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -21,10 +27,10 @@ export default function Login( ) { //add some kind of token
     const loginResponse = await loginUser({username: username, password: password})
     console.log(loginResponse)
     if (loginResponse.ok){
-      console.log("")
-      // proceed to homepage
+      console.log("User entered correct credentials")
     } else {
-      // user / passwrd err
+      console.log("User entered incorrect credentials")
+
     }
     
   }
@@ -46,6 +52,7 @@ export default function Login( ) { //add some kind of token
         </div>
       </form>
       <button href="http://localhost:3000/auth/github">Sign in with GitHub</button>
+      <Link to="/register">Register Instead</Link>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const path = require('path')
 const mongodb = require('mongodb')
-//require('dotenv').config()
+require('dotenv').config()
 const passport = require('passport')
 const cors = require('cors')
 const GitHubStrategy = require('passport-github2')
@@ -9,8 +9,8 @@ const express = require('express'),
   app = express()
 const connectEnsureLogin = require('connect-ensure-login');
 const bodyParser = require('body-parser'); // middleware for parsing body
-const User = require('../model/users.js')
-const Tasks = require('../model/tasks.js')
+const User = require('./model/users.js')
+const Tasks = require('./model/tasks.js')
 const LocalStrategy = require('passport-local').Strategy;
 const ObjectId = require('mongodb').ObjectId
 
@@ -19,6 +19,8 @@ const RES_OK = 200, RES_BAD_REQUEST = 400, RES_USER_EXISTS = 402, RES_TASK_ERR =
 //npx tailwindcss -i ./public/css/tailwindStyle.css -o ./public/css/output.css --watch
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -129,21 +131,20 @@ app.get("/username",connectEnsureLogin.ensureLoggedIn(), function (req, res) {
 
 
 
-app.get('/user/register',function (req, res) {
+app.get('/register',function (req, res) {
   res.sendFile(__dirname + "/public/register.html")
 })
 
 
-app.post('/user/register', function (req, res) {
+app.post('/register', function (req, res) {
   var username = req.body.username
   var password = req.body.password
   User.findByUsername(username).exec().then(user => {
     if (user == null){
       User.register({username:username},password)
-      res.redirect('/login')
+      res.status(200).send({isG: "All G"})
     } else {
-      res.writeHead(RES_USER_EXISTS, "Username already exists", { 'Content-Type': 'text/plain' })
-      res.end()
+      res.status(401).send({isG: "Username exists"})
     }
   })
   
