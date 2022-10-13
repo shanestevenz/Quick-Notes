@@ -37,18 +37,18 @@ function App() {
   //     }, [verifyUser])
 
 
-
       console.log("Router is running")
 
   return (
    
     <BrowserRouter>
+
       <Routes>
           <Route exact path="/" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login/>}></Route>
       </Routes>
-      
+    
   </BrowserRouter>
   ) //  <Route path="/" element={<Login />} />
 }
