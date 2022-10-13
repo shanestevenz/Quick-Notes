@@ -4,9 +4,12 @@ export default {
     public: "/",
     src: "/dist",
   },
-  plugins: [
-    /* ... */
-  ],
+   devOptions: {
+       tailwindConfig: './tailwind.config.js',
+     },
+     plugins: [
+        '@snowpack/plugin-postcss',
+     ],
   routes: [
     /* Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},
