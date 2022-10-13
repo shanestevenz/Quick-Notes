@@ -1,10 +1,6 @@
 import React from 'react'
-//import { BrowserRouter, Routes, Route, Switch } from "react-router-dom"
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-
 import { useCallback, useContext, useEffect, useState } from "react"
-//import { UserContext } from "./context/UserContext"
-
 import Login from "./Login"
 import Register from "./Register"
 import Home from "./Home"
