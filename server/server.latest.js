@@ -103,6 +103,7 @@ app.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
     if (user) {
       // user exists
+      //res.redirect("http://localhost:8080/test");
       res.status(200).send({ isG: "All G" });
     } else {
       res.status(401).send({ isG: "Not G" });
