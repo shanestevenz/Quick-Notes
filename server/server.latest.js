@@ -126,6 +126,17 @@ app.get("/", function (req, res) {
   }
 });
 
+app.get("/auth/status", function (req, res) {
+  console.log("/auth/status");
+  if (req.isAuthenticated()) {
+    res.writeHeader(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ isAuth: true }));
+  } else {
+    res.writeHeader(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ isAuth: false }));
+  }
+});
+
 app.get("/index", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
   console.log("get /index");
   res.send({ msg: "allG" });

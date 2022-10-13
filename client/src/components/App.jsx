@@ -1,56 +1,41 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import { useCallback, useContext, useEffect, useState } from "react"
-import Login from "./Login"
-import Register from "./Register"
-import Home from "./Home"
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useCallback, useContext, useEffect, useState } from "react";
+import Login from "./Login";
+import Register from "./Register";
+import Home from "./Home";
+
+const checkAuthenticationStatus = () => {
+  const isAuth = fetch("http://localhost:3000/auth/status", {
+    method: "GET",
+  }).then((response) => {
+    response.json().then((json) => json.isAuth);
+  });
+  return isAuth;
+};
 
 function App() {
+  console.log("Router is running");
 
-  //  // const [currentTab, setCurrentTab] = useState("login")
-  //   const [userContext, setUserContext] = useContext(UserContext)
-
-  //   //we use Usecallback to prevent this from being called again on refresh
-  //   const verifyUser = useCallback(() => {
-  //       fetch(process.env.REACT_APP_API_ENDPOINT + "users/refreshToken", {  //path for refreshing token !!! TODO: set this up
-  //         method: "POST",
-  //         credentials: "include",
-  //         headers: { "Content-Type": "application/json" },
-  //       }).then(async response => {
-  //         if (response.ok) {
-  //           const data = await response.json()
-  //           setUserContext(oldValues => {
-  //             return { ...oldValues, token: data.token }
-  //           })
-  //         } else {
-  //           setUserContext(oldValues => {
-  //             return { ...oldValues, token: null }
-  //           })
-  //         }
-  //         // call refreshToken every 5 minutes to renew the authentication token.
-  //         setTimeout(verifyUser, 5 * 60 * 1000)
-  //       })
-  //     }, [setUserContext])
-    
-  //   useEffect(() => {
-  //       verifyUser()
-  //     }, [verifyUser])
-
-
-      console.log("Router is running")
+  const authStatus = checkAuthenticationStatus();
+  authStatus.then((isAuth) => {
+    if (!isAuth) {
+      console.log("User is not authenticated, rendering login");
+      return <Login />;
+    } else {
+      // the main page
+    }
+  });
 
   return (
-   
     <BrowserRouter>
-
       <Routes>
-          <Route exact path="/" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/login" element={<Login/>}></Route>
+        <Route exact path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
-    
-  </BrowserRouter>
-  ) //  <Route path="/" element={<Login />} />
+    </BrowserRouter>
+  ); //  <Route path="/" element={<Login />} />
 }
 
 export default App;
