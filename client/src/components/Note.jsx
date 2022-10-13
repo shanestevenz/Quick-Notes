@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 
 export default function Note({id, title, content, color, date, posX, posY }) { //add some kind of token
@@ -8,21 +9,22 @@ export default function Note({id, title, content, color, date, posX, posY }) { /
    // const { ref, isComponentVisible } = useComponentVisible(true);
   // setNoteContent(content)
 
-    const ref = useRef(null);
+    // const ref = useRef(null);
 
-    const handleClickOutside = (event) => {
-        if (ref.current && !ref.current.contains(event.target)) {
-          // Update Note
-          console.log("CLicked outside note, save it!")
-        }
-    };
 
-    useEffect(() => {
-        document.addEventListener('click', handleClickOutside, true);
-        return () => {
-            document.removeEventListener('click', handleClickOutside, true);
-        };
-    }, []);
+    // const handleClickOutside = (event) => {
+    //     if (ref.current && !ref.current.contains(event.target)) {
+    //       // Update Note
+    //       console.log("CLicked outside note, save it!")
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     document.addEventListener('click', handleClickOutside, true);
+    //     return () => {
+    //         document.removeEventListener('click', handleClickOutside, true);
+    //     };
+    // }, []);
 
 
 
@@ -34,24 +36,32 @@ export default function Note({id, title, content, color, date, posX, posY }) { /
 		}
 	};
 
+
+    const handleDeleteNote = (event) => {
+        console.log("Delete Note Clicked!")
+	};
     return (
-        <div className='note' ref={ref} style={{ backgroundColor: color}} >
+        <div className='note' style={{ backgroundColor: color}} >
             <div className='note-header'>
 
                 <small className='note-title'>{title}</small>
-                <small className='delete-btn'>X</small>
+            
+
+                <input className='delete-btn' type="image" src="/ic_exit_handDrawn.png"  onClick={handleDeleteNote} />
+               
                
             </div>
             <hr className='note-line'/>
             <div className='note-content'>
-                <textarea rows='8'
+               
+               <TextareaAutosize rows='8' className='note-text-area'
 				cols='10'
 				placeholder='Type to add a note...'
 				value={noteContent}
-				onChange={handleNoteChange}>
+				onChange={handleNoteChange}
+            
 
-
-                </textarea>
+                ></TextareaAutosize>
                 
             </div>
 
@@ -60,25 +70,3 @@ export default function Note({id, title, content, color, date, posX, posY }) { /
         </div>
     )
 }
-//<span> {content}</span>
-
-
-// export default function useComponentVisible(initialIsVisible) {
-//     const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible);
-//     const ref = useRef(null);
-
-//     const handleClickOutside = (event) => {
-//         if (ref.current && !ref.current.contains(event.target)) {
-//             setIsComponentVisible(false);
-//         }
-//     };
-
-//     useEffect(() => {
-//         document.addEventListener('click', handleClickOutside, true);
-//         return () => {
-//             document.removeEventListener('click', handleClickOutside, true);
-//         };
-//     }, []);
-
-//     return { ref, isComponentVisible, setIsComponentVisible };
-// }

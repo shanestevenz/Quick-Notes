@@ -41,7 +41,6 @@ function App() {
   //     }, [verifyUser])
 
 
-
       console.log("Router is running")
 
   return (
