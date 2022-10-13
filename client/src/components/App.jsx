@@ -23,7 +23,7 @@ function App() {
       console.log("User is not authenticated, rendering login");
       return <Login />;
     } else {
-      // the main page
+      return <Home />;
     }
   });
 
@@ -33,6 +33,7 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/home" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
   ); //  <Route path="/" element={<Login />} />
