@@ -16,7 +16,7 @@ const checkAuthenticationStatus = () => {
 };
 
 
-export default function Home() {
+// export default function Home() {
   //add some kind of token
 
   //id, title, content, color, date, posX, posY
@@ -138,5 +138,4 @@ const getColor =  (color) =>
         </div>
     )
 
-
-}
+    }
