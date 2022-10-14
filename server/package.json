@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.latest.js"
+    "start": "node server.latest.js",
+    "startsimple": "node server.simple.js"
   },
   "dependencies": {
     "body-parser": "^1.20.1",

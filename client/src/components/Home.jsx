@@ -3,17 +3,7 @@ import React, { useState } from 'react';
 import Board from '../Board';
 import Sidebar from './Sidebar';
 import { nanoid } from 'nanoid';
-export default function Home() { //add some kind of token
 
-
-const checkAuthenticationStatus = () => {
-  const isAuth = fetch("http://localhost:3000/auth/status", {
-    method: "GET",
-  }).then((response) => {
-    response.json().then((json) => json.isAuth);
-  });
-  return isAuth;
-};
 
 
 export default function Home() {
@@ -31,6 +21,14 @@ export default function Home() {
 
     */
 
+        const checkAuthenticationStatus = () => {
+            const isAuth = fetch("http://localhost:3000/auth/status", {
+              method: "GET",
+            }).then((response) => {
+              response.json().then((json) => json.isAuth);
+            });
+            return isAuth;
+          };
 
         const addNote = (color) => {
             const date = new Date();
@@ -140,3 +138,4 @@ const getColor =  (color) =>
 
 
 }
+
