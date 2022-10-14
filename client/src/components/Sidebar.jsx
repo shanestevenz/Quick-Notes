@@ -5,28 +5,30 @@ import plusImg from '../../public/icons/boardPlus.png'
 import gearImg from '../../public/icons/settingsGear.png'
 import whiteStickyImg from '../../public/icons/whiteNote.png'
 
+import '../sidebar.css'
+
 export default function Sidebar( ) 
 {
   return(
 
-    <Menu>
-    <span>
-    <img src={stickyImg} class='stickyNotes'/>
-    <h2>Quick Notes</h2>
-    </span>
+
+    <div id="sidebarDiv">
+      <div id="header">
+    <img src={stickyImg} class='stickyNotes' id="headerImage"/>
+    <h2 id="headerText">Quick Notes</h2>
+    </div>
 
     <ul id="boardList">
     </ul>
     <div id="addBoardBtn">
-    <img src={plusImg} class='boardPlus'/>
+    <img src={plusImg} id='boardPlus'/>
     <p>Add Board</p>
     </div>
-    <span id="settingsBtn">
-    <img src={gearImg} class='settings'/>
-    <h2>Settings</h2>
-    </span>
-    </Menu>
-    
+    <div id="logoutBtn">
+    <h2>Log out</h2>
+    <img src={gearImg} id='gear'/>
+    </div>
+    </div>
   )}
     
 
