@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 
 
 
+
 export default function Home() {
   //add some kind of token
 
@@ -136,6 +137,5 @@ const getColor =  (color) =>
         </div>
     )
 
-
-}
+    }
 
