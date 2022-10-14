@@ -1,14 +1,28 @@
+
 import React, { useState } from 'react';
 import Board from '../Board';
 import Sidebar from './Sidebar';
 import { nanoid } from 'nanoid';
 export default function Home() { //add some kind of token
 
-    //id, title, content, color, date, posX, posY
+
+const checkAuthenticationStatus = () => {
+  const isAuth = fetch("http://localhost:3000/auth/status", {
+    method: "GET",
+  }).then((response) => {
+    response.json().then((json) => json.isAuth);
+  });
+  return isAuth;
+};
 
 
-    //COLORS
-    /*
+export default function Home() {
+  //add some kind of token
+
+  //id, title, content, color, date, posX, posY
+
+  //COLORS
+  /*
         Red: "#FB9D9D"
         Blue:  "#89B0EB"
         Green: "#89EBB6"
@@ -16,6 +30,7 @@ export default function Home() { //add some kind of token
         Purple: "#E989EB"
 
     */
+
 
         const addNote = (color) => {
             const date = new Date();

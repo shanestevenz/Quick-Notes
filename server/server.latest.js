@@ -103,6 +103,7 @@ app.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
     if (user) {
       // user exists
+      //res.redirect("http://localhost:8080/test");
       res.status(200).send({ isG: "All G" });
     } else {
       res.status(401).send({ isG: "Not G" });
@@ -122,6 +123,17 @@ app.get("/", function (req, res) {
     res.send({ msg: "Not g" });
 
     // res.sendFile(__dirname + '/public/login.html');
+  }
+});
+
+app.get("/auth/status", function (req, res) {
+  console.log("/auth/status");
+  if (req.isAuthenticated()) {
+    res.writeHeader(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ isAuth: true }));
+  } else {
+    res.writeHeader(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ isAuth: false }));
   }
 });
 

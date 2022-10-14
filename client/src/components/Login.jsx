@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import "../login.css";
 async function loginUser(credentials) {
   const bodyVal = new URLSearchParams();
@@ -14,15 +15,11 @@ async function loginUser(credentials) {
   return res;
 }
 
-//  const navigateToRegister = () => {
-//   // 👇️ navigate to /contacts
-//   navigate('/register');
-// };
-
-export default function Login() {
+function Login() {
   //add some kind of token
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginResponse = await loginUser({
@@ -31,9 +28,9 @@ export default function Login() {
     });
     console.log(loginResponse);
     if (loginResponse.ok) {
-      console.log("User entered correct credentials");
+      return navigate("/home");
     } else {
-      console.log("User entered incorrect credentials");
+      alert("User entered incorrect credentials");
     }
   };
   return (
@@ -87,3 +84,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;
