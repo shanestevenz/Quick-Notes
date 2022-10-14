@@ -150,3 +150,14 @@ body {
    margin-left: -250px;  /* Negative half of width. */
   background-color: #F2F2F2;
 }
+
+
+
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
