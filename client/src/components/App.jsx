@@ -38,6 +38,12 @@ function App() {
 
 
       console.log("Router is running")
+      var testing= true;
+
+    if(testing)
+    {
+      return <Home/>
+    }
 
   return (
    

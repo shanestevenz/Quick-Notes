@@ -3,7 +3,7 @@ import AddNoteBar from './components/AddNoteBar';
 import Note from './components/Note';
 
 
-export default function Board({id, title, notes }) { //add some kind of token
+export default function Board({id, title, notes,handleAddNote,handleDeleteNote }) { //add some kind of token
 
 
     return (
@@ -21,14 +21,14 @@ export default function Board({id, title, notes }) { //add some kind of token
                  date={note.date}
                  posX = {note.posX}
                  posY={note.posY}
-                
+                    deleteNote = {handleDeleteNote}
                 />
             )
             )}
 
         </div>
         
-        <AddNoteBar></AddNoteBar>
+        <AddNoteBar handleAddNote={handleAddNote}></AddNoteBar>
        </div>
     )
 }

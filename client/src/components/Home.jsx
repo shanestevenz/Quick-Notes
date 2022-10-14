@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from '../Board';
-
+import Sidebar from './Sidebar';
+import { nanoid } from 'nanoid';
 export default function Home() { //add some kind of token
 
     //id, title, content, color, date, posX, posY
@@ -15,9 +16,60 @@ export default function Home() { //add some kind of token
         Purple: "#E989EB"
 
     */
+
+        const addNote = (color) => {
+            const date = new Date();
+            const newNote = {
+                id: nanoid(),
+                title: "untitled note",
+                content: "start typing here...",
+                color: getColor(color),
+                date: "10/12/2000",
+                posX: 25,
+                posY: 25
+            };
+            const newNotes = [...notes, newNote];
+            setNotes(newNotes);
+        };
+    
+        const deleteNote = (id) => {
+
+            console.log("DELETEING STICKY NOTE")
+            const newNotes = notes.filter((note) => note.id !== id);
+            setNotes(newNotes);
+        };
+
+      
+const getColor =  (color) =>
+{
+    let hexcode = "#89EBB6";
+    switch(color) {
+        case "red":
+            hexcode = "#FB9D9D"
+          break;
+          case "blue":
+            hexcode = "#89B0EB"
+          break;
+          case "green":
+            hexcode = "#89EBB6"
+          break;
+          case "yellow":
+            hexcode = "#FFF495"
+          break;
+          case "purple":
+            hexcode = "#E989EB"
+          break;
+        default:
+            hexcode = "#89EBB6"
+        
+      }
+
+      return hexcode
+}
+
     const [notes, setNotes] = useState([
         {
-            id: 12,
+            id: nanoid(),
             title: "First Note",
             content: "This is my first note, hurray!",
             color: "#FB9D9D",
@@ -26,7 +78,7 @@ export default function Home() { //add some kind of token
             posY: 25
         },
         {
-            id: 123,
+            id: nanoid(),
             title: "Second Note",
             content: "This is my Second note, hurray!",
             color: "#89B0EB",
@@ -35,7 +87,7 @@ export default function Home() { //add some kind of token
             posY: 2
         },
         {
-            id: 1234,
+            id: nanoid(),
             title: "Third Note",
             content: "This is my Third note, hurray!",
             color: "#89EBB6",
@@ -44,7 +96,7 @@ export default function Home() { //add some kind of token
             posY: 0
         },
         {
-            id: 12345,
+            id: nanoid(),
             title: "Fourth Note",
             content: "This is my Fourth note, hurray!",
             color: "#E989EB",
@@ -53,7 +105,7 @@ export default function Home() { //add some kind of token
             posY: 100
         },
         {
-            id: 123456,
+            id: nanoid(),
             title: "Fifth Note",
             content: "This is my Fifth note, hurray!",
             color: "#FFF495",
@@ -66,8 +118,10 @@ export default function Home() { //add some kind of token
     return (
         <div className="home-wrapper">
             
-            <h1>HOme Boy</h1>
-            <Board notes={notes}></Board>
+            {/* <Sidebar></Sidebar> */}
+            <Board notes={notes} handleAddNote={addNote} handleDeleteNote={deleteNote}></Board>
         </div>
     )
+
+
 }
