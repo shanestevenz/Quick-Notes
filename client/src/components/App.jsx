@@ -15,6 +15,18 @@ const checkAuthenticationStatus = () => {
 };
 
 function App() {
+
+
+    
+
+      console.log("Router is running")
+      var testing= true;
+
+    if(testing)
+    {
+      return <Home/>
+    }
+    
   console.log("Router is running");
 
   const authStatus = checkAuthenticationStatus();
@@ -26,6 +38,7 @@ function App() {
       return <Home />;
     }
   });
+
 
   return (
     <BrowserRouter>
