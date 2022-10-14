@@ -48,21 +48,33 @@ function createNewBoard()
   }
 
 
+function createNewBoard() {
+  console.log("create new board")
 
-  window.onload = function()
-  {
+  const boardList = document.getElementById("boardList")
+  const newBoard = document.createElement('li')
+  const newSpan = document.createElement('span')
+  newSpan.innerHTML = "<img src=" + whiteStickyImg + " class='whiteNotes'/><h2>New Board</h2>"
+  newBoard.appendChild(newSpan)
+  boardList.appendChild(newBoard)
 
-    const addBoardBtn = document.getElementById("addBoardBtn")
-
-    if(addBoardBtn)
-    {
-
-    
-  addBoardBtn.addEventListener("click", addBoard => {
-    addBoard.preventDefault()
-    createNewBoard()
-  })
+  console.log("just added a new board to the list")
 }
-  }
 
-  
+
+
+window.onload = function () {
+
+  const addBoardBtn = document.getElementById("addBoardBtn")
+
+  if (addBoardBtn) {
+
+
+    addBoardBtn.addEventListener("click", addBoard => {
+      addBoard.preventDefault()
+      createNewBoard()
+    })
+  }
+}
+
+
