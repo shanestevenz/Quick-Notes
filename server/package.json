@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.latest.js",
+    "start": "node server.js",
     "startsimple": "node server.simple.js"
   },
   "dependencies": {

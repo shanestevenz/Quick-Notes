@@ -3,161 +3,122 @@ body {
   font-family: sans-serif;
 }
 
-
-.home-wrapper{
-
+.home-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-
-.sidebar-Header{
- 
+.sidebar-Header {
   display: inline-flex;
   justify-content: center;
   margin-bottom: 3px;
 }
 
-
-
-.green-Note
-{
-  filter: invert(84%) sepia(63%) saturate(296%) hue-rotate(75deg) brightness(96%) contrast(93%);
-
+.green-Note {
+  filter: invert(84%) sepia(63%) saturate(296%) hue-rotate(75deg)
+    brightness(96%) contrast(93%);
 }
 
-.blue-Note
-{
-  filter: invert(63%) sepia(63%) saturate(274%) hue-rotate(178deg) brightness(96%) contrast(91%);
-
+.blue-Note {
+  filter: invert(63%) sepia(63%) saturate(274%) hue-rotate(178deg)
+    brightness(96%) contrast(91%);
 }
 
-.purple-Note
-{
-  filter: invert(88%) sepia(14%) saturate(3946%) hue-rotate(238deg) brightness(93%) contrast(98%);
-
+.purple-Note {
+  filter: invert(88%) sepia(14%) saturate(3946%) hue-rotate(238deg)
+    brightness(93%) contrast(98%);
 }
 
-.red-Note
-{
-  filter: invert(71%) sepia(22%) saturate(596%) hue-rotate(314deg) brightness(92%) contrast(117%);
+.red-Note {
+  filter: invert(71%) sepia(22%) saturate(596%) hue-rotate(314deg)
+    brightness(92%) contrast(117%);
 }
 
-.yellow-Note
-{
-  filter: invert(100%) sepia(25%) saturate(5167%) hue-rotate(312deg) brightness(114%) contrast(105%);
-  
+.yellow-Note {
+  filter: invert(100%) sepia(25%) saturate(5167%) hue-rotate(312deg)
+    brightness(114%) contrast(105%);
 }
-.sidebar-header-image{
-  position:absolute;
- 
+.sidebar-header-image {
+  position: absolute;
+
   right: 10px;
 
   height: 18px;
 }
 
-
-
-
 .note {
   position: relative;
-	border-radius: 10px;
-	padding-left: 1rem;
+  border-radius: 10px;
+  padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
-	min-height: 170px;
+  min-height: 170px;
   min-width: 170px;
-  
-	display: flex;
-	flex-direction: column;
- 
-	white-space: pre-wrap; 
 
+  display: flex;
+  flex-direction: column;
+
+  white-space: pre-wrap;
 }
 
-.note-header{
+.note-header {
   display: inline-flex;
   justify-content: center;
   margin-bottom: 3px;
-  
 }
-.note-title
-{
+.note-title {
   background: transparent;
   font-size: 16px;
-  
+
   outline: none;
   border: 0 none;
 }
 .note-line {
- 
-   width: 100%;
-   background-color: black;
-   height: 1px;
-   border: 0 none;
-  
- 
-
+  width: 100%;
+  background-color: black;
+  height: 1px;
+  border: 0 none;
 }
 .note-content {
-
   display: inline-flex;
-	flex-direction: column;
+  flex-direction: column;
   min-height: 170px;
   max-height: 750px;
 }
-.note-text-area{
-
+.note-text-area {
   width: 100%;
   height: 90%;
-  padding: 5px 10px ;
-  box-sizing:border-box;
+  padding: 5px 10px;
+  box-sizing: border-box;
   margin-bottom: 10px;
   overflow-y: hidden;
   background: transparent;
   font-size: 16px;
-  resize:none;
+  resize: none;
   outline: none;
   border: 0 none;
 }
 
 .board {
- 
-	display: grid;
-	grid-gap: 1rem; 
-	grid-template-columns: repeat(
-		auto-fill,
-		minmax(250px, 1fr)
-	);
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 .delete-btn {
-  position:absolute;
- 
+  position: absolute;
+
   right: 10px;
 
   height: 18px;
-  
 }
 
-
-.AddNoteBar-container{
+.AddNoteBar-container {
   display: flex;
   flex-direction: row;
   z-index: 99;
   position: fixed;
-   bottom: 0 ;
-   left: 50%;
-   margin-left: -250px;  /* Negative half of width. */
-  background-color: #F2F2F2;
+  bottom: 0;
+  left: 50%;
+  margin-left: -250px; /* Negative half of width. */
+  background-color: #f2f2f2;
 }
-
-
-
-
-.login-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
