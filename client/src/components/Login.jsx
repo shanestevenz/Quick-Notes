@@ -14,6 +14,10 @@ async function loginUser(credentials) {
   });
   return res;
 }
+function authenticateWithGithub(e) {
+  e.preventDefault();
+  window.open("http://localhost:3000/auth/github", "_self");
+}
 
 export default function Login() {
   //add some kind of token
@@ -37,6 +41,7 @@ export default function Login() {
       console.log("User entered incorrect credentials");
     }
   };
+
   return (
     <div className="bg-gray-900 text-white text-opacity-80 flex justify-center items-center h-screen w-screen">
       <form className="min-w-[20%]" onSubmit={handleSubmit}>
@@ -69,12 +74,13 @@ export default function Login() {
           >
             Submit
           </button>
-          <button
+          <a
             className="text-center button py-2 bg-slate-200 hover:bg-yellow-600 hover:text-white border border-black hover:border-transparent text-black font-semibold rounded"
-            href="http://localhost:3000/auth/github"
+            href="/auth/github"
+            onClick={(e) => authenticateWithGithub(e)}
           >
             Sign in with GitHub
-          </button>
+          </a>
           <p className="text-grey-700 mt-4 text-center">or</p>
 
           <Link

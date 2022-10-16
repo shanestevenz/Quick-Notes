@@ -68,7 +68,7 @@ export default function Register() {
           </button>
           <button
             className="text-center button py-2 bg-slate-200 hover:bg-yellow-600 hover:text-white border border-black hover:border-transparent text-black font-semibold rounded"
-            href="http://localhost:3000/auth/github"
+            href="/auth/github"
           >
             Sign in with GitHub Instead
           </button>

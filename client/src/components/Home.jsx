@@ -43,9 +43,22 @@ export default function Home() {
   };
 
   const deleteNote = (id) => {
+    // Deleteing needs noteID, and boardID
     console.log("DELETEING STICKY NOTE");
-    const newNotes = notes.filter((note) => note.id !== id);
-    setNotes(newNotes);
+    const json = { noteId: id, boardId: 1 }, // TODO: need to get board id as well
+      body = JSON.stringify(json);
+    fetch("/tasks/delete", {
+      method: "POST",
+      body: body,
+      headers: { "Content-Type": "application/json" },
+    }).then(function (response) {
+      if (response.ok) {
+        const newNotes = notes.filter((note) => note.id !== id);
+        setNotes(newNotes);
+      } else {
+        console.log("Failed to delete note with id:", id);
+      }
+    });
   };
 
   const getColor = (color) => {
