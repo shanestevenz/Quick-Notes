@@ -274,7 +274,7 @@ app.post(
         incomingData.userId = user._id; // should be same, still updating just in case
         const editedTask = new Tasks(incomingData);
         Tasks.findOneAndUpdate(
-          { _id: incomingData._id, userId: incomingData.userId },
+          { _id: incomingData._id, userId: incomingData.userId }, // TODO: have to add board here
           editedTask,
           function (err) {
             if (err) {

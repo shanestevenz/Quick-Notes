@@ -36,12 +36,46 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+// github strategy for oauth connection
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/github/callback", // TODO change later
+    },
+    function (accessToken, refreshToken, profile, done) {
+      process.nextTick(function () {
+        User.findByUsername(profile.username)
+          .exec()
+          .then((user) => {
+            if (!user) {
+              // no user with this username, create one
+              User.register(
+                { username: profile.username },
+                profile.id,
+                (err, account) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    done(null, account);
+                  }
+                }
+              );
+            } else {
+              done(null, user);
+            }
+          });
+      });
+    }
+  )
+);
 
 // Session Management
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//, { failureRedirect: '/login', failureMessage:true}
+// LOGIN STUFF
 // handle login attempt
 app.post(
   "/login",
@@ -63,6 +97,47 @@ app.post(
   }
 );
 
+// handle logout
+app.get("/logout", function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).send({ msg: "Logout successful" });
+  });
+});
+
+app.get(
+  "/auth/github/callback",
+  function (req, res, next) {
+    passport.authenticate("github", function (err, user, info) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        res.status(401).send({ msg: "Server Error" });
+      }
+      req.login(user, next);
+    })(req, res, next);
+  },
+  function (req, res) {
+    console.log(req);
+
+    if (req.user) {
+      res
+        .status(200)
+        .sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+    }
+  }
+);
+
+// Github authentication
+app.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+
+// END OF LOGIN STUFF
 // handle register
 app.post("/register", function (req, res) {
   var username = req.body.username;
@@ -149,6 +224,81 @@ app.post(
             res.end();
           }
         });
+      });
+  }
+);
+
+// post request for deleting a task for an authenticated user
+app.post(
+  "/notes/delete",
+  ensureUserLoggedIn,
+  bodyParser.json({ extended: true }),
+  function (req, res) {
+    console.log("Delete request for: " + req.user.username);
+    const incomingData = req.body;
+    User.findByUsername(req.user.username)
+      .exec()
+      .then((user) => {
+        console.log({
+          userId: user._id,
+          _id: ObjectId(incomingData.noteId),
+          boardId: Number(incomingData.boardID),
+        });
+        Notes.deleteOne(
+          {
+            userId: user._id,
+            _id: ObjectId(incomingData.noteId),
+            boardId: Number(incomingData.boardId),
+          },
+          function (err) {
+            if (err) {
+              res.writeHead(403, err.message, {
+                "Content-Type": "text/plain",
+              });
+              res.end();
+            } else {
+              res.writeHead(200, { "Content-Type": "application/json" });
+              res.end();
+            }
+          }
+        );
+      });
+  }
+);
+
+// post request for editing a task for an authenticated user
+app.post(
+  "/notes/edit",
+  ensureUserLoggedIn,
+  bodyParser.json({ extended: true }),
+  function (req, res) {
+    console.log("Edit request for: " + req.user.username);
+    const incomingData = req.body;
+    User.findByUsername(req.user.username)
+      .exec()
+      .then((user) => {
+        incomingData.userId = user._id;
+        const editedTask = new Notes(incomingData);
+        console.log(incomingData);
+        Notes.findOneAndUpdate(
+          {
+            _id: ObjectId(incomingData._id),
+            userId: incomingData.userId,
+            boardId: incomingData.boardId,
+          }, // TODO: have to add board here
+          editedTask,
+          function (err) {
+            if (err) {
+              res.writeHead(403, "Gone", {
+                "Content-Type": "text/plain",
+              });
+              res.end();
+            } else {
+              res.writeHead(200, "OK", { "Content-Type": "text/plain" });
+              res.end();
+            }
+          }
+        );
       });
   }
 );
