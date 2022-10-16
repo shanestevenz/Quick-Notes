@@ -25,9 +25,12 @@ export default function Register() {
     });
     console.log(registerResponse);
     if (registerResponse.ok) {
-      console.log("Succesfully registered user");
+      // reroute to login screen after a timeout
+      console.log("Succesfully registered user.");
+    } else if (registerResponse.status === 401) {
+      console.log("Username exists.");
     } else {
-      console.log("Username exists");
+      console.log("Some server error while registering user.");
     }
   };
 

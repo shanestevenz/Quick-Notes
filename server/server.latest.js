@@ -9,7 +9,7 @@ const express = require("express"),
   app = express();
 const bodyParser = require("body-parser"); // middleware for parsing body
 const User = require("./model/users.js");
-const Tasks = require("./model/tasks.js");
+const Tasks = require("./model/notes.js");
 const LocalStrategy = require("passport-local").Strategy;
 const ObjectId = require("mongodb").ObjectId;
 
