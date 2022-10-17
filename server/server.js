@@ -42,7 +42,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/github/callback", // TODO change later
+      callbackURL: "https://quick-notes.glitch.me/github/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       process.nextTick(function () {

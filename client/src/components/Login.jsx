@@ -16,7 +16,7 @@ async function loginUser(credentials) {
 }
 function authenticateWithGithub(e) {
   e.preventDefault();
-  window.open("http://localhost:3000/auth/github", "_self");
+  window.open("https://quick-notes.glitch.me/auth/github", "_self");
 }
 
 export default function Login() {
