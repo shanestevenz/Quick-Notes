@@ -18,7 +18,7 @@ The Login and Register page are straight foreward. After registering, the user i
 ### Backend
 - node: To create server
 - express: To create server and for using middlewares, and ease of development for server
-- passport (including passport-github2): To authenticate and register users and to implement OAuth for github
+- passport (including passport-github2): To authenticate and register users and to implement OAuth for github, used custom middleware/strategy for local login
 - express-session: To manage sessions for logged in users (users are still logged in after refreshing)
 - mongoDB: To manage any app data (Users, notes)
 - mongoose: To create schemas for Users and notes in MongoDB, and used to connect to MongoDB
