@@ -45,6 +45,8 @@ export default function Sidebar({
       "</h2>";
     newBoard.appendChild(newSpan);
     boardList.appendChild(newBoard);
+
+    
     setCurrentBoardId(currentBoardId);
     setBoardIdList(boardIdList);
 

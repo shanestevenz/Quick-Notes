@@ -5,24 +5,13 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  //add some kind of token
-
-  //id, title, content, color, date, posX, posY
-
-  //COLORS
-  /*
-        Red: "#FB9D9D"
-        Blue:  "#89B0EB"
-        Green: "#89EBB6"
-        Yellow: "#FFF495"
-        Purple: "#E989EB"
-
-    */
+  
   const navigate = useNavigate();
 
   const getBoardIdList = (newNotes) => {
     let boardIdList = [];
     console.log("in getBoardIdList", newNotes);
+
     for (let note of newNotes) {
       console.log(note.boardId);
       if (boardIdList.includes(note.boardId)) {
@@ -36,8 +25,8 @@ export default function Home() {
 
   const addNote = (color) => {
     const newNote = {
-      noteTitle: "untitled note",
-      noteContent: "start typing here...",
+      noteTitle: "",
+      noteContent: "",
       noteColor: getColor(color),
       posX: 25,
       posY: 25,
@@ -133,7 +122,7 @@ export default function Home() {
 
   const [notes, setNotes] = useState([]);
   const [currentBoardId, setCurrentBoardId] = useState(1); // TODO make dynamic
-  const [boardIdList, setBoardIdList] = useState([]); // TODO make dynamic
+  const [boardIdList, setBoardIdList] = useState([1,2,4]); // TODO make dynamic
 
   return (
     <div className="home-wrapper">
