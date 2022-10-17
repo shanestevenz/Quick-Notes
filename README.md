@@ -43,17 +43,12 @@ The Login and Register page are straight foreward. After registering, the user i
  - Frontend React development: Notes and Add notes
  - Lots of backend troubleshooting
  - Certified CSS gurus
-
-#### Siddhartha Pradhan
-- Implemented backend logic (setting up endpoints, mongoDB, mongoose etc). Completed setup that is required for OAuth.
-- Created Login and register page for frontend
-- Integrated the frontend with backend
-
-
- ## Project Video
- - LINK HERE
-## Responsibilities
+ ### Siddhartha Pradhan
+ - Implemented backend logic (setting up endpoints, mongoDB, mongoose etc). Completed setup that is required for OAuth.
+ - Created Login and register page for frontend
+ - Integrated the frontend with backend
 
 
 ## Video link
+ - LINK HERE
 
