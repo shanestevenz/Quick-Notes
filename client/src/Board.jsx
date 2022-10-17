@@ -20,6 +20,8 @@ export default function Board({
   };
 
   function getFilteredNotes() {
+
+    console.log("getFilteredNotes(): currentboard ID: " + currentBoardId )
     let filteredNotes = [];
     for (let index in notes) {
       if (filterNotesByBoardId(notes[index])) {
