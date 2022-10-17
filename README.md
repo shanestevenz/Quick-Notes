@@ -14,10 +14,13 @@ The Login and Register page are straight foreward. After registering, the user i
 - Tailwind css
 - snowpack
 ### Backend
-- node
-- express
-- passport (including passport-github2)
-- 
+- node: To create server
+- express: To create server and for using middleware ability
+- passport (including passport-github2): To authenticate and register users and to implement OAuth for github
+- express-session: To manage sessions for logged in users (users are still logged in after refreshing)
+- mongoDB: To manage any app data (Users, notes)
+- mongoose: To create schemas for Users and notes in MongoDB, and used to connect to MongoDB
+- dotenv: To load .env variables
 
 
 3. An outline of the technologies you used and how you used them.
