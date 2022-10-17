@@ -7,7 +7,8 @@ Website link (Quick Notes): https://quick-notes.glitch.me/
 We created a sticky notes web app, taking inspiration from Microsoft's Sticky notes (https://apps.microsoft.com/store/detail/microsoft-sticky-notes/9NBLGGH4QGHW). Users are given the ability to create virtual sticky notes and organize them with the choice of 5 colors. These notes features a title and content section that users dynamically add,modify, and delete. Users can also create multiple boards aiding in the organization of their sticky notes. Each sticky note is saved to its board for feature use. Users have the option of creating a username and password or through authenticating with their github account.
 
 ## Additional Instructions
-The Login and Register page are straight foreward. After registering, the user is redirected to login screen. There are 2 test accounts ready (user: "user1", pass: "test123") and (user: "user2", pass: "test123")
+The Login and Register page are straight foreward. After registering, the user is redirected to login screen. There are 2 test accounts ready (user: "user1", pass: "test123") and (user: "user2", pass: "test123") From here we hope it is self explanatory, just in case let's walk through it.
+The bottom of the screen features 5 different color sticky note icons that when pressed will create a new note on the screen. The user must enter a title for the note and click the save icon for the note to be saved.  On the left side bar, the user can also click "add board" to create and switch to a new board.
 
 ## Technologies used
 ### Frontend
@@ -25,11 +26,8 @@ The Login and Register page are straight foreward. After registering, the user i
 - dotenv: To load .env variables
 
 ## Challenges
-
-3. An outline of the technologies you used and how you used them.
-## Challenges
 - We faced a lot of difficulty with setting up the initial project using React and Snowpack. We likely spent around 3 hours fixing all the configs and routes before we could even really start on the project. We ended up using create-snowpack-app which eased our troubles a little.
-- We also experienced difficulty when implementing the Login page with cookies. We ended up changing the rendering from being client side to server in order to help fix some of the issues we had routing and saving the cookies.
+- We also experienced difficulty when implementing the Login page with cookies. We ended up redoing our server in order to help fix some of the issues we had routing and saving the cookies.
 - The side bar was also surprisingly challenging. We initially used a react-burger-menu to have a slidng out sidebar but we ended up abandoning this because it was a css nightmare.
 - Dynamically sizing the notes was also somewhat of a challenge. We ended up making the note a flexbox  and using a react TextareaAutosize component to help autosize the note when they got too long
 
