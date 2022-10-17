@@ -75,7 +75,7 @@ export default function Home() {
   const deleteNote = (id) => {
     // Deleteing needs noteID, and boardID
     console.log("DELETEING STICKY NOTE");
-    const json = { noteId: id, boardId: 1 }, // TODO: need to get board id as well
+    const json = { noteId: id, boardId: currentBoardId }, // TODO: need to get board id as well
       body = JSON.stringify(json);
     fetch("/notes/delete", {
       method: "POST",
