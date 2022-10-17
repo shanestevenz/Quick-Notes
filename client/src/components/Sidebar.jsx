@@ -33,7 +33,9 @@ export default function Sidebar({
     const newSpan = document.createElement("span");
     newSpan.classList.toggle("boardListElement");
     currentBoardId = Math.max(...boardIdList) + 1;
-
+    if (currentBoardId == -Infinity) {
+      currentBoardId = 1;
+    }
     boardIdList.push(currentBoardId);
     newSpan.innerHTML =
       "<img src=" +

@@ -88,6 +88,11 @@ export default function Note({
         .getElementsByClassName("save-button-visibility-temp")
         .item(0)
         .classList.add("hidden");
+      document
+        .getElementsByClassName("save-button-visibility-temp")
+        .item(0)
+        .classList.remove("save-button-visibility-temp"); // remove temp status
+
       saveNote(note);
     } else {
       console.log("ID is not null in notes, calling /notes/edit");
