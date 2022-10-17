@@ -1,93 +1,108 @@
-
 body {
-    font-family: sans-serif;
-  }
+  font-family: sans-serif;
+}
 
-#sidebarDiv
-{
+#sidebarDiv {
+  width: 15%;
   height: 100%;
-  width: 20%;
-  position: fixed;
+  min-height: 100%;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #6091db;
+  display: flex;
+  flex-direction: column;
+  background-color: #3f3f46;
+  justify-items: center;
+  align-items: center;
 }
 
-
-h2
-{
-  color: #ffffff
+h2 {
+  color: #ffffff;
 }
 
-p{
-  color: #ffffff
+p {
+  color: #ffffff;
 }
-
 
 #headerImage {
-  float: left;
   width: 50px;
   height: 50px;
   margin-top: 5px;
 }
 
 #headerText {
-  position: relative;
-  top: 18px;
-  left: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
   color: #ffffff;
+  font-size: x-large;
 }
 
 #header {
+  padding: 10px;
+  width: 100%;
   display: flex;
-  background-color: #4971ac;
+  justify-content: center;
+  align-items: center;
+  background-color: #059669;
 }
 
 #boardPlus {
-    height: 50px;
-    width: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  height: 40px;
+  width: 40px;
 }
 
 #addBoardBtn {
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+  text-align: center;
 }
-
-
 
 #gear {
-    height: 30px;
-    width: 30px;
-    margin-left: 8px;
+  height: 25px;
+  width: 25px;
 }
-
 
 #logoutBtn {
-    text-align: center;
-    margin-left: 15px;
-    position: absolute;
-    bottom: 20px;
-    display: flex;
+  padding: 12px;
+  text-align: center;
+  margin-left: 15px;
+  position: absolute;
+  background-color: #059669;
+  border-radius: 10px;
+  bottom: 20px;
+  display: flex;
+  cursor: pointer;
 }
 
+.selected-board {
+  background-color: #059669;
+  border-radius: 10px;
+}
 
 .whiteNotes {
-    height: 40px;
-    width: 40px;
-    margin-right: 5px;
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
 }
 
 ul {
-    list-style: none;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 10px;
+  list-style: none;
 }
 
+.boardListElement {
+  display: flex;
+  text-align: center;
+  position: relative;
+  margin: 15px;
+}
 
-span {
-    display: flex;
-    text-align: center;
-    position: relative;
-    left: -15px;
+.list-item {
+  padding: 5px;
 }

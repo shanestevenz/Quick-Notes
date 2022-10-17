@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Board from "../Board";
 import Sidebar from "./Sidebar";
-import { nanoid } from "nanoid";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   //add some kind of token
@@ -17,29 +18,69 @@ export default function Home() {
         Purple: "#E989EB"
 
     */
+  const navigate = useNavigate();
 
-  const checkAuthenticationStatus = () => {
-    const isAuth = fetch("http://localhost:3000/auth/status", {
-      method: "GET",
-    }).then((response) => {
-      response.json().then((json) => json.isAuth);
-    });
-    return isAuth;
+  const getBoardIdList = (newNotes) => {
+    let boardIdList = [];
+    console.log("in getBoardIdList", newNotes);
+    for (let note of newNotes) {
+      console.log(note.boardId);
+      if (boardIdList.includes(note.boardId)) {
+        continue;
+      } else if (note.boardId != undefined) {
+        boardIdList.push(note.boardId);
+      }
+    }
+    return boardIdList.sort();
   };
 
   const addNote = (color) => {
-    const date = new Date();
     const newNote = {
-      id: nanoid(),
-      title: "untitled note",
-      content: "start typing here...",
-      color: getColor(color),
-      date: "10/12/2000",
+      noteTitle: "untitled note",
+      noteContent: "start typing here...",
+      noteColor: getColor(color),
       posX: 25,
       posY: 25,
+      boardId: currentBoardId, // TODO: make this dynamic
     };
     const newNotes = [...notes, newNote];
     setNotes(newNotes);
+  };
+
+  const saveNewNote = async (note) => {
+    const res = await fetch("/notes/add", {
+      method: "POST",
+      body: JSON.stringify(note),
+      headers: { "Content-Type": "application/json" },
+    });
+    return res;
+  };
+
+  const editNote = async (note) => {
+    const res = await fetch("/notes/edit", {
+      method: "POST",
+      body: JSON.stringify(note),
+      headers: { "Content-Type": "application/json" },
+    });
+    return res;
+  };
+
+  // get a list of notes from the server
+  const getAllNotes = async () => {
+    const notesResponse = await fetch("/notes", {
+      method: "GET",
+    });
+
+    if (notesResponse.ok) {
+      const newNotes = await notesResponse.json();
+      console.log("in getAllNotes", newNotes);
+      setNotes(newNotes);
+      setBoardIdList(getBoardIdList(newNotes));
+    } else {
+      console.log("Failed get all notes, no auth");
+      sessionStorage.setItem("loggedIn", "false");
+      navigate("/", { replace: true });
+    }
   };
 
   const deleteNote = (id) => {
@@ -47,13 +88,13 @@ export default function Home() {
     console.log("DELETEING STICKY NOTE");
     const json = { noteId: id, boardId: 1 }, // TODO: need to get board id as well
       body = JSON.stringify(json);
-    fetch("/tasks/delete", {
+    fetch("/notes/delete", {
       method: "POST",
       body: body,
       headers: { "Content-Type": "application/json" },
     }).then(function (response) {
       if (response.ok) {
-        const newNotes = notes.filter((note) => note.id !== id);
+        const newNotes = notes.filter((note) => note._id !== id);
         setNotes(newNotes);
       } else {
         console.log("Failed to delete note with id:", id);
@@ -86,63 +127,31 @@ export default function Home() {
     return hexcode;
   };
 
-  const [notes, setNotes] = useState([
-    {
-      id: nanoid(),
-      title: "First Note",
-      content: "This is my first note, hurray!",
-      color: "#FB9D9D",
-      date: "10/11/2000",
-      posX: 25,
-      posY: 25,
-    },
-    {
-      id: nanoid(),
-      title: "Second Note",
-      content: "This is my Second note, hurray!",
-      color: "#89B0EB",
-      date: "10/12/2022",
-      posX: 100,
-      posY: 2,
-    },
-    {
-      id: nanoid(),
-      title: "Third Note",
-      content: "This is my Third note, hurray!",
-      color: "#89EBB6",
-      date: "10/13/2022",
-      posX: 120,
-      posY: 0,
-    },
-    {
-      id: nanoid(),
-      title: "Fourth Note",
-      content: "This is my Fourth note, hurray!",
-      color: "#E989EB",
-      date: "10/14/2000",
-      posX: 100,
-      posY: 100,
-    },
-    {
-      id: nanoid(),
-      title: "Fifth Note",
-      content: "This is my Fifth note, hurray!",
-      color: "#FFF495",
-      date: "10/15/2000",
-      posX: 33,
-      posY: 100,
-    },
-  ]);
+  useEffect(() => {
+    getAllNotes();
+  }, []);
+
+  const [notes, setNotes] = useState([]);
+  const [currentBoardId, setCurrentBoardId] = useState(1); // TODO make dynamic
+  const [boardIdList, setBoardIdList] = useState([]); // TODO make dynamic
 
   return (
     <div className="home-wrapper">
       {console.log("In <Home>")}
-      {/* <Sidebar></Sidebar> */}
+      <Sidebar
+        boardIdList={boardIdList}
+        setBoardIdList={setBoardIdList}
+        currentBoardId={currentBoardId}
+        setCurrentBoardId={setCurrentBoardId}
+      />
       <Board
         notes={notes}
         handleAddNote={addNote}
         handleDeleteNote={deleteNote}
-      ></Board>
+        currentBoardId={currentBoardId}
+        handleSaveNewNote={saveNewNote}
+        handleEditNote={editNote}
+      />
     </div>
   );
 }
