@@ -13,7 +13,7 @@ function App() {
     const hasCode = url.includes("?code="); // github cb success
     if (hasCode) {
       sessionStorage.setItem("loggedIn", "true");
-      window.open("http://localhost:3000/", "_self");
+      window.open("https://quick-notes.glitch.me/", "_self");
     }
   }, []);
 
