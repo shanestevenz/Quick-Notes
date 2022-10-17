@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  
   const navigate = useNavigate();
 
   const getBoardIdList = (newNotes) => {
@@ -122,7 +121,7 @@ export default function Home() {
 
   const [notes, setNotes] = useState([]);
   const [currentBoardId, setCurrentBoardId] = useState(1); // TODO make dynamic
-  const [boardIdList, setBoardIdList] = useState([1,2,4]); // TODO make dynamic
+  const [boardIdList, setBoardIdList] = useState([]); // TODO make dynamic
 
   return (
     <div className="home-wrapper">

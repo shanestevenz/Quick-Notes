@@ -108,15 +108,17 @@ app.get("/logout", function (req, res, next) {
 });
 
 app.get(
-  "/auth/github/callback",
+  "/github/callback",
   function (req, res, next) {
     passport.authenticate("github", function (err, user, info) {
+      console.log(user);
       if (err) {
         return next(err);
       }
       if (!user) {
         res.status(401).send({ msg: "Server Error" });
       }
+
       req.login(user, next);
     })(req, res, next);
   },
@@ -310,4 +312,4 @@ app.get("/*", function (req, res) {
 });
 
 app.listen(process.env.PORT || 3000);
-console.log('Server started with "node server.js"');
+console.log('Server started with "node .server/server.js"');
