@@ -31,11 +31,6 @@ The Login and Register page are straight foreward. After registering, the user i
 - Implemented backend logic (setting up endpoints, mongoDB, mongoose etc). Completed setup that is required for OAuth.
 - Created Login and register page for frontend
 - Integrated the frontend with backend
-5. What each group member was responsible for designing / developing.
-6. A link to your project video.
 
-Think of 1,3, and 4 in particular in a similar vein to the design / tech achievements for A1—A4… make a case for why what you did was challenging and why your implementation deserves a grade of 100%.
+## Video link
 
-## FAQs
-
-- **Can I use XYZ framework?** You can use any web-based frameworks or tools available, but for your server programming you need to use Node.js. Your client-side scripting language should be either JavaScript or TypeScript.
