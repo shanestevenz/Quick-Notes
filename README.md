@@ -61,5 +61,5 @@ The bottom of the screen features 5 different color sticky note icons that when 
 
 
 ## Video link
- - LINK HERE
+ - [LINK HERE](https://drive.google.com/file/d/1TQntNjzdRehwDDR57ibnhaV1K5ki0vjo/view?usp=sharing)
 
