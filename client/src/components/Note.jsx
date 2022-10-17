@@ -41,9 +41,8 @@ export default function Note({
     if (id == null) {
       document
         .getElementsByClassName("save-button-visibility-temp")
-        .array.forEach((element) => {
-          element.classList.remove("hidden");
-        });
+        .item(0)
+        .classList.remove("hidden");
     } else {
       document
         .getElementsByClassName("save-button-visibility-" + id)
@@ -87,10 +86,8 @@ export default function Note({
       console.log("ID is null in note, calling /notes/add");
       document
         .getElementsByClassName("save-button-visibility-temp")
-        .array.forEach((element) => {
-          element.classList.add("hidden");
-        });
-
+        .item(0)
+        .classList.add("hidden");
       saveNote(note);
     } else {
       console.log("ID is not null in notes, calling /notes/edit");

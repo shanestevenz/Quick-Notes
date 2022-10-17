@@ -207,6 +207,7 @@ app.post(
   function (req, res) {
     console.log("Add request for: " + req.user.username);
     const incomingData = req.body;
+    console.log(incomingData);
     User.findByUsername(req.user.username)
       .exec()
       .then((user) => {
@@ -241,7 +242,7 @@ app.post(
         console.log({
           userId: user._id,
           _id: ObjectId(incomingData.noteId),
-          boardId: Number(incomingData.boardId),
+          boardId: Number(incomingData.boardID),
         });
         Notes.deleteOne(
           {
