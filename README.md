@@ -27,10 +27,10 @@ The Login and Register page are straight foreward. After registering, the user i
 
 3. An outline of the technologies you used and how you used them.
 ## Challenges
-- We faced a lot of dificulty with setting up the initial project using React and Snowpack. We likely spent around 3 hours fixing all the configs and routes before we could even really start on the project. We ended up using create-snowpack-app which eased are troubles a little.
-- We also experienced diffucilty when implementing the Login page with cookies. We ended up changing the rendering from being client side to server in order to help fix some of the issues we had routing and saving the cookies.
-- The side bar was also surprising challenging. We intially used a react-burger-menu to have a slidng out sidebar but we ended up abandoning this because it was a css nightmare.
-- Dynamically sizing the notes were also somewhat of a challenge. We ended up making the note a flexbox  and using a react TextareaAutosize component to help autosize the note when they got too long
+- We faced a lot of difficulty with setting up the initial project using React and Snowpack. We likely spent around 3 hours fixing all the configs and routes before we could even really start on the project. We ended up using create-snowpack-app which eased our troubles a little.
+- We also experienced difficulty when implementing the Login page with cookies. We ended up changing the rendering from being client side to server in order to help fix some of the issues we had routing and saving the cookies.
+- The side bar was also surprisingly challenging. We initially used a react-burger-menu to have a slidng out sidebar but we ended up abandoning this because it was a css nightmare.
+- Dynamically sizing the notes was also somewhat of a challenge. We ended up making the note a flexbox  and using a react TextareaAutosize component to help autosize the note when they got too long
 
 ## Responsibilities
  ### Reagan Brunelle
