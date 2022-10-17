@@ -8,20 +8,22 @@ We created a sticky notes web app, taking inspiration from Microsoft's Sticky no
 ## Additional Instructions
 The Login and Register page are straight foreward. After registering, the user is redirected to login screen. There are 2 test accounts ready (user: "user1", pass: "test123") and (user: "user2", pass: "test123")
 
-## Technologies used:
+## Technologies used
 ### Frontend
-- React 
-- Tailwind css
-- snowpack
+- React: To create an interactive UI
+- Tailwind: For styling and ease of development
+- snowpack: Build tool to create static pages from src
+- postcss: Automate tailwind builds (creates the css file to use in production/development)
 ### Backend
 - node: To create server
-- express: To create server and for using middleware ability
-- passport (including passport-github2): To authenticate and register users and to implement OAuth for github
+- express: To create server and for using middlewares, and ease of development for server
+- passport (including passport-github2): To authenticate and register users and to implement OAuth for github, used custom middleware/strategy for local login
 - express-session: To manage sessions for logged in users (users are still logged in after refreshing)
 - mongoDB: To manage any app data (Users, notes)
 - mongoose: To create schemas for Users and notes in MongoDB, and used to connect to MongoDB
 - dotenv: To load .env variables
 
+## Challenges
 
 3. An outline of the technologies you used and how you used them.
 ## Challenges
@@ -31,19 +33,27 @@ The Login and Register page are straight foreward. After registering, the user i
 - Dynamically sizing the notes were also somewhat of a challenge. We ended up making the note a flexbox  and using a react TextareaAutosize component to help autosize the note when they got too long
 
 ## Responsibilities
- ### Reagan
- - Frontend, React, CSS, Sidebar, UI Design
- ### Shane
- - Frontend, React CSS, Notes, UI Design
- ### Sid
- - Backend, Frontend, Login Authentication
+ ### Reagan Brunelle
+ - UI Design
+ - Frontend React development: Sidebar and boards
+ - Lots of frontend troublshooting
+ - Certified CSS gurus
+ ### Shane Stevens
+ - UI Design and Mock ups
+ - Frontend React development: Notes and Add notes
+ - Lots of backend troubleshooting
+ - Certified CSS gurus
+
+#### Siddhartha Pradhan
+- Implemented backend logic (setting up endpoints, mongoDB, mongoose etc). Completed setup that is required for OAuth.
+- Created Login and register page for frontend
+- Integrated the frontend with backend
 
 
  ## Project Video
  - LINK HERE
+## Responsibilities
 
-Think of 1,3, and 4 in particular in a similar vein to the design / tech achievements for A1—A4… make a case for why what you did was challenging and why your implementation deserves a grade of 100%.
 
-## FAQs
+## Video link
 
-- **Can I use XYZ framework?** You can use any web-based frameworks or tools available, but for your server programming you need to use Node.js. Your client-side scripting language should be either JavaScript or TypeScript.
