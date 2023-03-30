@@ -1,0 +1,10 @@
+// [snowpack] add styles to the page (skip if no document exists)
+if (typeof document !== 'undefined') {
+  const code = "body {\r\n  font-family: sans-serif;\r\n}\r\n\r\n#sidebarDiv {\r\n  width: 15%;\r\n  height: 100%;\r\n  min-height: 100%;\r\n  z-index: 1;\r\n  top: 0;\r\n  left: 0;\r\n  display: flex;\r\n  flex-direction: column;\r\n  background-color: #3f3f46;\r\n  justify-items: center;\r\n  align-items: center;\r\n}\r\n\r\nh2 {\r\n  color: #ffffff;\r\n}\r\n\r\np {\r\n  color: #ffffff;\r\n}\r\n\r\n#headerImage {\r\n  width: 50px;\r\n  height: 50px;\r\n  margin-top: 5px;\r\n}\r\n\r\n#headerText {\r\n  margin-left: 10px;\r\n  margin-top: 5px;\r\n  color: #ffffff;\r\n  font-size: x-large;\r\n}\r\n\r\n#header {\r\n  padding: 10px;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: #059669;\r\n}\r\n\r\n#boardPlus {\r\n  height: 40px;\r\n  width: 40px;\r\n}\r\n\r\n#addBoardBtn {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-top: 20px;\r\n  gap: 10px;\r\n  text-align: center;\r\n}\r\n\r\n#gear {\r\n  height: 25px;\r\n  width: 25px;\r\n}\r\n\r\n#logoutBtn {\r\n  padding: 12px;\r\n  text-align: center;\r\n  margin-left: 15px;\r\n  position: absolute;\r\n  background-color: #059669;\r\n  border-radius: 10px;\r\n  bottom: 20px;\r\n  display: flex;\r\n  cursor: pointer;\r\n}\r\n\r\n.selected-board {\r\n  background-color: #059669;\r\n  border-radius: 10px;\r\n}\r\n\r\n.whiteNotes {\r\n  height: 40px;\r\n  width: 40px;\r\n  margin-right: 5px;\r\n}\r\n\r\nul {\r\n  padding: 8px;\r\n  margin-top: 10px;\r\n  border-radius: 10px;\r\n  list-style: none;\r\n}\r\n\r\n.boardListElement {\r\n  display: flex;\r\n  text-align: center;\r\n  position: relative;\r\n  margin: 15px;\r\n}\r\n\r\n.list-item {\r\n  padding: 5px;\r\n}\r\n";
+
+  const styleEl = document.createElement("style");
+  const codeEl = document.createTextNode(code);
+  styleEl.type = 'text/css';
+  styleEl.appendChild(codeEl);
+  document.head.appendChild(styleEl);
+}
